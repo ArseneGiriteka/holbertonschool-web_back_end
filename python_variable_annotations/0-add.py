@@ -5,7 +5,7 @@ of to variable a and b
 """
 
 
-def add(a, b) -> float:
+def add(a: float, b: float) -> float:
     """
     add: function
     a, b: two numbers
