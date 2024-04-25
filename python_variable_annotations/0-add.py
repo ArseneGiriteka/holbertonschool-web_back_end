@@ -7,8 +7,8 @@ of to variable a and b
 
 def add(a: float, b: float) -> float:
     """
-    add: function
-    a, b: two numbers
-    return: sum of a and b as float
+    add function
+    a, b two numbers
+    return sum of a and b as float
     """
     return a + b
