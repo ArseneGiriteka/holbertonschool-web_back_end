@@ -2,6 +2,7 @@
 """
 This module implements a coroutine named async_generator that has no
 arguments and yield a random integer after wait 1 second
+this function is a good one
 """
 import asyncio
 import random
