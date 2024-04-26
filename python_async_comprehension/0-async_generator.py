@@ -9,7 +9,7 @@ import random
 from typing import AsyncGenerator
 
 
-async def async_generator() -> AsyncGenerator:
+async def async_generator():
     """
     async_generator function
     no arguments
