@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
 This module implements a coroutine named async_generator that has no
-arguments and yield a random number between 0 and 10 after waiting 1 second
+arguments and yield a random integer after wait 1 second
+this function is a good one
 """
 import asyncio
 import random
-from typing import AsyncGenerator
+from typing import Generator
 
-async def async_generator() -> AsyncGenerator[float, None]:
+
+async def async_generator() -> Generator[float, None, None]:
     """
     async_generator function
     no arguments
