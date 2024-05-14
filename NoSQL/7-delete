@@ -1,3 +1,2 @@
 // script that deletes all documents with a specific attribute
-db.school.remove({name="Holberton school"}, {multi: true})
-
+db.school.remove({name="Holberton school"})
