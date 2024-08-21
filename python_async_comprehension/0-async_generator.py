@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import asyncio
-import random
-import typing
-
 """
 This module contains an async generator that yields
 random numbers between 0 and 10 every second for 10 seconds.
 """
+
+import asyncio
+import random
+import typing
 
 
 async def async_generator() -> typing.AsyncGenerator[float, None]:
