@@ -10,7 +10,7 @@ random numbers between 0 and 10 every second for 10 seconds.
 
 async def async_generator() -> typing.AsyncGenerator[float, None]:
     """
-    this function is an async generator that yields 
+    this function is an async generator that yields
     random numbers between 0 and 10 every second for 10 seconds.
     """
     for i in range(10):
