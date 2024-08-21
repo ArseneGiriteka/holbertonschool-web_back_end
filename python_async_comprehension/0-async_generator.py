@@ -13,6 +13,7 @@ async def async_generator() -> typing.AsyncGenerator[float, None]:
     """
     this is the implementation of the async generator
     it takas no arguments and yields 10 random numbers
+    between 0 and 10 every second
     """
     for i in range(10):
         await asyncio.sleep(1)
