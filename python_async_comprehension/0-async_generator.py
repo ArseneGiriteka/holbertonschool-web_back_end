@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import random
+import typing
 """
 asycncronous generator that takes no arguments
 and yields 10 random numbers between 0 and 10
@@ -8,7 +9,7 @@ evry second
 """
 
 
-async def async_generator():
+async def async_generator() -> typing.AsyncGenerator[float, None]:
     """
     this is the implementation of the async generator
     """
