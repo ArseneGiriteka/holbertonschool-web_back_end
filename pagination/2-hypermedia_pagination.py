@@ -6,7 +6,7 @@ and return the dataset and get the page wanted
 
 import csv
 from math import ceil
-from typing import List, Tuple, Optional, Dict
+from typing import List, Tuple, Optional, Dict, Any
 
 
 class Server:
@@ -55,7 +55,7 @@ class Server:
             return []
         return dataset[start_index:end_index]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """
         this methods accepts same arguments as get_page and return
         a diction of binded data
