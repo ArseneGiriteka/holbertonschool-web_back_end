@@ -25,7 +25,7 @@ class Server:
         """
         self.__dataset = None
 
-    def dataset(self) -> List[List]:
+    def dataset(self):
         """
         Cached dataset and return the dataset
         and return the dataset
