@@ -67,7 +67,7 @@ class Server:
             dictionary.update({"page_size": len(page_dataset)})
             dictionary.update({"page": page})
             dictionary.update({"data": page_dataset})
-            if start_index >= len(page_dataset):
+            if end_index > len(self.dataset()):
                 dictionary.update({"next_page": None})
             else:
                 dictionary.update({"next_page": page + 1})
