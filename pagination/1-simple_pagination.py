@@ -6,7 +6,7 @@ that returns a tuple of size two containing a start index
 
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 
 class Server:
@@ -23,9 +23,9 @@ class Server:
         and return the dataset and get the page wanted
         and return the dataset
         """
-        self.__dataset = None
+        self.__dataset: Optional[List[List[str]]] = None
 
-    def dataset(self) -> List[List]:
+    def dataset(self) -> List[List[str]]:
         """
         Cached dataset and return the dataset
         and return the dataset
