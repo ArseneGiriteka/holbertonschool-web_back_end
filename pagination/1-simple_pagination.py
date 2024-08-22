@@ -25,7 +25,7 @@ class Server:
         """
         self.__dataset = None
 
-    def dataset(self) -> List[List[str]]:
+    def dataset(self) -> List[List]:
         """
         Cached dataset and return the dataset
         and return the dataset
@@ -35,11 +35,11 @@ class Server:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
-            return dataset[1:]  # Exclude header row
+            return dataset[1:]
 
         return self.__dataset
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List[str]]:
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         this method return the page wanted by using the correct index range
         and return the dataset
