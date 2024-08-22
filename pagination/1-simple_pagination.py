@@ -25,7 +25,7 @@ class Server:
         """
         self.__dataset = None
 
-    def dataset(self):
+    def dataset(self) -> List[List[str]]:
         """
         Cached dataset and return the dataset
         and return the dataset
@@ -39,7 +39,7 @@ class Server:
 
         return self.__dataset
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List[str]]:
         """
         this method return the page wanted by using the correct index range
         and return the dataset
@@ -59,7 +59,6 @@ class Server:
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     returns a tuple of size two containing a start index
-    and an end index
-    and return the dataset
+    and an end index corresponding to the range of indexes
     """
     return ((page - 1) * page_size, page * page_size)
