@@ -6,6 +6,7 @@ and an end index
 """
 from typing import Tuple
 
+
 def index_range(page, page_size) -> Tuple[int, int]:
     """
     returns a tuple of size two containing a start index
