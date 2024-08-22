@@ -63,21 +63,21 @@ class Server:
         dictionary: Dict = {}
         page_dataset = self.get_page(page, page_size)
         start_index, end_index = index_range(page, page_size)
-        dictionary.update({"page_size": len(page_dataset)})
-        dictionary.update({"page": page})
-        dictionary.update({"data": page_dataset})
-        if start_index >= len(page_dataset):
-            dictionary.update({"next_page": None})
-        else:
-            dictionary.update({"next_page": page + 1})
-        if start_index <= 0:
-            dictionary.update({"prev_page": None})
-        else:
-            dictionary.update({"prev_page": page - 1})
-        dictionary.update(
-            {"total_pages": ceil(len(self.dataset()) / page_size)})
+        if page_dataset is not None:
+            dictionary.update({"page_size": len(page_dataset)})
+            dictionary.update({"page": page})
+            dictionary.update({"data": page_dataset})
+            if start_index >= len(page_dataset):
+                dictionary.update({"next_page": None})
+            else:
+                dictionary.update({"next_page": page + 1})
+            if start_index <= 0:
+                dictionary.update({"prev_page": None})
+            else:
+                dictionary.update({"prev_page": page - 1})
+            dictionary.update(
+                {"total_pages": ceil(len(self.dataset()) / page_size)})
         return dictionary
-
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
