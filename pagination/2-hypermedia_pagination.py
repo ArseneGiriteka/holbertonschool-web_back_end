@@ -79,6 +79,7 @@ class Server:
         return dictionary
 
 
+
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     returns a tuple of size two containing a start index
