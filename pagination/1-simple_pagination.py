@@ -17,7 +17,7 @@ class Server:
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
-    def __init__(self) -> None:
+    def __init__(self):
         """
         this method initiate the class
         and return the dataset and get the page wanted
@@ -35,7 +35,7 @@ class Server:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
-            return dataset[1:]
+            self.__dataset = dataset[1:]
 
         return self.__dataset
 
