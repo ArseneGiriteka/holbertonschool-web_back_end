@@ -12,6 +12,7 @@ from typing import List, Tuple
 class Server:
     """
     Server class to paginate a database of popular baby names.
+    and return the dataset and get the page wanted
     and return the dataset
     """
     DATA_FILE = "Popular_Baby_Names.csv"
@@ -19,6 +20,7 @@ class Server:
     def __init__(self) -> None:
         """
         this method initiate the class
+        and return the dataset and get the page wanted
         and return the dataset
         """
         self.__dataset = None
@@ -26,6 +28,7 @@ class Server:
     def dataset(self) -> List[List]:
         """
         Cached dataset and return the dataset
+        and return the dataset
         and return the dataset
         """
         if self.__dataset is None:
@@ -39,6 +42,7 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         this method return the page wanted by using the correct index range
+        and return the dataset
         and return the dataset
         """
         assert type(page) == int and page > 0
@@ -56,5 +60,6 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     returns a tuple of size two containing a start index
     and an end index
+    and return the dataset
     """
     return ((page - 1) * page_size, page * page_size)
