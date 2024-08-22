@@ -23,7 +23,7 @@ class Server:
         and return the dataset and get the page wanted
         and return the dataset
         """
-        self.__dataset = [[""]]
+        self.__dataset = None
 
     def dataset(self) -> List[List[str]]:
         """
@@ -31,11 +31,11 @@ class Server:
         and return the dataset
         and return the dataset
         """
-        if self.__dataset[0][0] == "":
+        if self.__dataset is None:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
-            self.__dataset = dataset[1:]
+            return dataset[1:]  # Exclude header row
 
         return self.__dataset
 
