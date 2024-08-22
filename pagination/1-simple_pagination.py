@@ -2,6 +2,8 @@
 import csv
 import math
 from typing import List, Tuple
+
+
 """
 this module contains a simple helper function
 that returns a tuple of size two containing a start index
@@ -39,9 +41,6 @@ class Server:
         assert type(page) == int and page > 0
         assert type(page_size) == int and page_size > 0
         dataset = self.dataset()
-
-        if page * page_size > len(dataset):
-            return []
 
         start_index, end_index = index_range(page, page_size)
         return dataset[start_index:end_index]
