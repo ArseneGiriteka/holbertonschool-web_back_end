@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-import csv
-import math
-from typing import List, Tuple
-
-
 """
 this module contains a simple helper function
 that returns a tuple of size two containing a start index
 """
+
+import csv
+import math
+from typing import List, Tuple
 
 
 class Server:
