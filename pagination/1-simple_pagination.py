@@ -10,9 +10,13 @@ from typing import List, Tuple
 
 
 class Server:
+    """
+    Server class to paginate a database of popular baby names.
+    and return the dataset
+    """
     DATA_FILE = "Popular_Baby_Names.csv"
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         this method initiate the class
         and return the dataset
