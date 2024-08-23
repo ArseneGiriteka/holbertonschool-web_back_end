@@ -1,0 +1,2 @@
+//this create or use existing my_db database
+use my_db
