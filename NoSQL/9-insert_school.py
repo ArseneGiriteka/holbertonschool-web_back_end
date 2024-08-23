@@ -11,5 +11,5 @@ def insert_school(mongo_collection, **kwargs):
     this function insert a doc in
     a given collection
     """
-    querry_result = mongo_collection.insert_one(kwargs)
+    querry_result = mongo_collection.insert(kwargs)
     return str(querry_result.inserted_id)
