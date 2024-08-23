@@ -13,5 +13,6 @@ def update_topics(mongo_collection, name, topics):
     a name(string) and a list of topics(string)
     to update
     """
-    mongo_collection.update({"name": name},
-                            {'$set': {"topics": topics}}, multi=True)
+    mongo_collection.update(
+        {"name": name}, {"$set": {"topics": topics}}, multi=True
+        )
