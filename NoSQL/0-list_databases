@@ -1,2 +1,2 @@
 //list all existing dbs
-echo "show dbs"
+show dbs
