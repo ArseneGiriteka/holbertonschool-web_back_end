@@ -1,0 +1,2 @@
+//this print the doc matched
+db.school.find({name: "Holberton school"})
