@@ -1,0 +1,2 @@
+//this script will print all documents in shcool collection
+db.school.find()
