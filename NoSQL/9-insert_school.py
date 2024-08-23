@@ -4,10 +4,11 @@ this is a script to insert doc
 and return result
 """
 
-import pymongo
+from typing import List, Dict
+from pymongo.collection import Collection
 
 
-def insert_school(mongo_collection, **kwargs):
+def insert_school(mongo_collection: Collection, **kwargs: List[Dict]) -> str:
     """
     this function insert a doc in
     a given collection
