@@ -8,7 +8,6 @@ const rl = readline.createInterface({
 });
 
 rl.question('', (userInput) => {
-  const username = userInput.toString().trim();
   console.log('Your name is: ' + username);
   rl.close();
 });
