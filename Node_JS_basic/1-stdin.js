@@ -1,10 +1,10 @@
-var process = require('process');
+const process = require('process');
 
 process.stdout.write('Welcome to Holberton School, what is your name?\n');
 process.stdin.on('readable', () => {
-  var my_name = process.stdin.read();
-  if (my_name) {
-    process.stdout.write(`Your name is: ${my_name}`);
+  const myName = process.stdin.read();
+  if (myName) {
+    process.stdout.write(`Your name is: ${myName}`);
   }
 });
 process.stdin.on('end', () => {
