@@ -1,14 +1,12 @@
-const readline = require('readline');
+const readline = require('node:readline');
 
-const lineReader = readline.createInterface({
+const r = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-
-lineReader.question('Welcome to Holberton School, what is your name?\n', (username) => {
-  console.log(`Your name is: ${username}`);
+r.question('Welcome to Holberton School, what is your name?\n', (name) => {
+  console.log(`Your name is: ${name}`);
 });
-
-lineReader.on('close', () => {
+r.on('close', () => {
   console.log('This important software is now closing');
 });
