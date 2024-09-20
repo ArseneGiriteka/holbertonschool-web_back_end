@@ -10,7 +10,7 @@ function countStudents(path) {
     const fields = [];
 
     for (let i = 0; i < rows.length; i += 1) {
-      const field = rows[i].split(',')[3];
+      const field = rows[i].split(',')[3].trim();
       if (!(fields.includes(field))) {
         fields.push(field);
       }
@@ -20,7 +20,7 @@ function countStudents(path) {
       const names = [];
       for (const row of rows) {
         if (field === row.trim().split(',')[3].trim()) {
-          names.push(row.trim().split(',')[0]);
+          names.push(row.trim().split(',')[0].trim());
         }
       }
 
