@@ -9,4 +9,6 @@ const app = http.createServer((request, result) => {
 const PORT = 1245;
 const HOST = 'localhost';
 
-app.listen(PORT, HOST, () => {});
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running at http://${HOST}:${PORT}/`);
+});
