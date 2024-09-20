@@ -26,13 +26,14 @@ function countStudents(path) {
 
       let strNames = '';
       for (let i = 0; i < names.length; i += 1) {
-        if (i !== names.length - 1) {
+        if (names.length === 0) {
+          strNames = '';
+        } else if (i !== names.length - 1) {
           strNames += ` ${names[i]},`;
         } else {
           strNames += ` ${names[i]}`;
         }
       }
-
       console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
     }
   } catch (error) {
