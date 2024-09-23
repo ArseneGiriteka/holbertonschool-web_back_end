@@ -7,6 +7,7 @@ async function countStudents(path) {
     const data = await promise.readFile(path, 'utf-8');
     const rows = data.trim().split('\n');
     rows.shift();
+    console.log(`Number of students: ${rows.length}`);
     result += `Number of students: ${rows.length}`;
 
     const fields = [];
@@ -36,10 +37,11 @@ async function countStudents(path) {
           strNames += ` ${names[i]}`;
         }
       }
+      console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
       result += `\nNumber of students in ${field}: ${names.length}. List:${strNames}`;
     }
   } catch (error) {
-    throw new Error('Error: Cannot load the database');
+    return 'Error: Cannot load the database';
   }
   return result;
 }
@@ -49,26 +51,11 @@ const app = http.createServer(async (req, res) => {
 
   res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
-    res.statusCode = 200;
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
-    const database = process.argv[2];
-    if (!database) {
-      res.statusCode = 500;
-      res.end('Error: Cannot load the database');
-    } else {
-      try {
-        const data = await countStudents(database);
-        res.statusCode = 200;
-        res.end(`This is the list of our students\n${data}`);
-      } catch (error) {
-        res.statusCode = 500;
-        res.end(error.message);
-      }
-    }
-  } else {
-    res.statusCode = 404;
-    res.end('404 Not Found');
+    res.write('This is the list of our students\n');
+    res.write(await countStudents(process.argv[2]));
+    res.end();
   }
 });
 
