@@ -7,7 +7,7 @@ async function countStudents(path) {
     const data = await promise.readFile(path, 'utf-8');
     const rows = data.trim().split('\n');
     rows.shift();
-    console.log(`Number of students: ${rows.length}`);
+    // console.log(`Number of students: ${rows.length}`);
     result += `Number of students: ${rows.length}`;
 
     const fields = [];
@@ -37,7 +37,7 @@ async function countStudents(path) {
           strNames += ` ${names[i]}`;
         }
       }
-      console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
+      // console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
       result += `\nNumber of students in ${field}: ${names.length}. List:${strNames}`;
     }
   } catch (error) {
@@ -49,12 +49,18 @@ async function countStudents(path) {
 const app = http.createServer(async (req, res) => {
   const { url } = req;
 
-  res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
-    res.end('Hello Holberton School!');
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('Hello Holberton School!');
+    res.end();
   } else if (url === '/students') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.write('This is the list of our students\n');
     res.write(await countStudents(process.argv[2]));
+    res.end();
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.write('Error 404 : Page Not Found');
     res.end();
   }
 });
@@ -62,7 +68,7 @@ const app = http.createServer(async (req, res) => {
 const PORT = 1245;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}/`);
+  // console.log(`Server is listening on port ${PORT}/`);
 });
 
 module.exports = app;
