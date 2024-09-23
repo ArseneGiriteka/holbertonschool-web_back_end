@@ -7,7 +7,6 @@ async function countStudents(path) {
     const data = await promise.readFile(path, 'utf-8');
     const rows = data.trim().split('\n');
     rows.shift();
-    console.log(`Number of students: ${rows.length}`);
     result += `Number of students: ${rows.length}`;
 
     const fields = [];
@@ -37,11 +36,10 @@ async function countStudents(path) {
           strNames += ` ${names[i]}`;
         }
       }
-      console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
       result += `\nNumber of students in ${field}: ${names.length}. List:${strNames}`;
     }
   } catch (error) {
-    throw new Error('Cannot load the database');
+    throw new Error('Error: Cannot load the database');
   }
   return result;
 }
@@ -55,10 +53,9 @@ const app = http.createServer(async (req, res) => {
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
     const database = process.argv[2];
-    console.log(database.toString());
     if (!database) {
       res.statusCode = 500;
-      res.end('Cannot load the database');
+      res.end('Error: Cannot load the database');
     } else {
       try {
         const data = await countStudents(database);
