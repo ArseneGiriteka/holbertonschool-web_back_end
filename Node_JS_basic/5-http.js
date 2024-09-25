@@ -1,50 +1,44 @@
-const promise = require('fs').promises;
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const { parse } = require('csv-parse');
 
-async function countStudents(path) {
-  let result = '';
-  try {
-    const data = await promise.readFile(path, 'utf-8');
-    const rows = data.trim().split('\n');
-    rows.shift();
-    // console.log(`Number of students: ${rows.length}`);
-    result += `Number of students: ${rows.length}`;
+const countStudents = async (database) => {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    const studentsByField = {};
 
-    const fields = [];
+    const parser = fs.createReadStream(database)
+      .pipe(parse({ delimiter: ',', from_line: 2 }));
 
-    for (let i = 0; i < rows.length; i += 1) {
-      const field = rows[i].split(',')[3].trim();
-      if (!(fields.includes(field))) {
-        fields.push(field);
-      }
-    }
-
-    for (const field of fields) {
-      const names = [];
-      for (const row of rows) {
-        if (field === row.trim().split(',')[3].trim()) {
-          names.push(row.trim().split(',')[0].trim());
+    parser.on('data', (row) => {
+      if (row.length > 0 && row[0].trim()) {
+        const field = row[3]; // Assuming that field is at index 3
+        if (!studentsByField[field]) {
+          studentsByField[field] = [];
         }
+        studentsByField[field].push(row[0]);
+      }
+    });
+
+    parser.on('end', () => {
+      let totalStudents = 0;
+      let output = '';
+
+      for (const field in studentsByField) {
+        const studentCount = studentsByField[field].length;
+        totalStudents += studentCount;
+        output += `Number of students in ${field}: ${studentCount}. List: ${studentsByField[field].join(', ')}\n`;
       }
 
-      let strNames = '';
-      for (let i = 0; i < names.length; i += 1) {
-        if (names.length === 0) {
-          strNames = '';
-        } else if (i !== names.length - 1) {
-          strNames += ` ${names[i]},`;
-        } else {
-          strNames += ` ${names[i]}`;
-        }
-      }
-      // console.log(`Number of students in ${field}: ${names.length}. List:${strNames}`);
-      result += `\nNumber of students in ${field}: ${names.length}. List:${strNames}`;
-    }
-  } catch (error) {
-    return 'Error: Cannot load the database';
-  }
-  return result;
-}
+      resolve(`Number of students: ${totalStudents}\n` + output.trim());
+    });
+
+    parser.on('error', (err) => {
+      reject(new Error(`Cannot load the database ${database}`));
+    });
+  });
+};
 
 const app = http.createServer(async (req, res) => {
   const { url } = req;
@@ -56,19 +50,23 @@ const app = http.createServer(async (req, res) => {
   } else if (url === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.write('This is the list of our students\n');
-    res.write(await countStudents(process.argv[2]));
+    try {
+      const result = await countStudents(process.argv[2]);
+      res.write(result);
+    } catch (error) {
+      res.write(error.message);
+    }
     res.end();
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.write('Error 404 : Page Not Found');
+    res.write('Error 404: Page Not Found');
     res.end();
   }
 });
 
 const PORT = 1245;
-
 app.listen(PORT, () => {
-  // console.log(`Server is listening on port ${PORT}/`);
+  console.log(`Server is listening on port ${PORT}/`);
 });
 
 module.exports = { app, countStudents };
