@@ -1,5 +1,5 @@
-const promise = require('fs').promises;
-const http = require('http');
+import { promises as promise } from 'fs';
+import { createServer } from 'http';
 
 async function countStudents(path) {
   let result = '';
@@ -46,7 +46,7 @@ async function countStudents(path) {
   return result;
 }
 
-const app = http.createServer(async (req, res) => {
+const app = createServer(async (req, res) => {
   const { url } = req;
 
   if (url === '/') {
@@ -72,4 +72,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}/`);
 });
 
-module.exports = { app, countStudents };
+export default { app, countStudents };
