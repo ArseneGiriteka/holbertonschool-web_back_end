@@ -1,8 +1,8 @@
-import { promises as promise } from 'fs';
-import { createServer } from 'http';
+const promise = require('fs').promises;
+const http = require('http');
 
 async function countStudents(path) {
-  let result = '';
+  let result = 'This is the list of our students\n';
   try {
     const data = await promise.readFile(path, 'utf-8');
     const rows = data.trim().split('\n');
@@ -46,7 +46,7 @@ async function countStudents(path) {
   return result;
 }
 
-const app = createServer(async (req, res) => {
+const app = http.createServer(async (req, res) => {
   const { url } = req;
 
   if (url === '/') {
@@ -55,7 +55,6 @@ const app = createServer(async (req, res) => {
     res.end();
   } else if (url === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('This is the list of our students\n');
     res.write(await countStudents(process.argv[2]));
     res.end();
   } else {
@@ -72,4 +71,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}/`);
 });
 
-export default { app, countStudents };
+module.exports = { app, countStudents };
